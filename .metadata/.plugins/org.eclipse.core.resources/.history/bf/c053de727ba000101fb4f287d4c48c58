@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="14017c64-0b32-49e9-b2bc-8d35d85f7850" >
+		<http:listener-connection host="0.0.0.0" port="8088" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="3f06721f-0ed2-4d2e-99fa-195e04d82850" basePath="/" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config2" doc:name="HTTP Listener config" doc:id="4540eca5-1cab-4f69-8edf-36c5e34b522c">
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="experienciaFlow" doc:id="b8f1c5dd-9d75-486f-bd52-85db27bd11da" >
+		<http:listener doc:name="Listener" doc:id="c927a1b0-0a69-43fc-a705-2deeccc4ac91" config-ref="HTTP_Listener_config2" path="/prueba/:id" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="Logger" doc:id="fefe0e53-29f9-4ccb-a6d0-2f07cd3b269e" message="#[attributes.queryParams]"/>
+	</flow>
+</mule>
